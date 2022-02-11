@@ -1,5 +1,6 @@
 package com.wsldev.bookstore.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.wsldev.bookstore.domain.Categoria;
@@ -19,6 +20,10 @@ public class CategoriaService {
         Optional<Categoria> obj = this.repository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
                 "Objeto não encontrado! id: " + id + ", Tipo: " + Categoria.class.getName()));
+    }
+
+    public List<Categoria> findAll() {
+        return repository.findAll();
     }
 
 }
