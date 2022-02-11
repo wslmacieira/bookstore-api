@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 public class Livro implements Serializable {
 
     private static final Long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -24,4 +24,56 @@ public class Livro implements Serializable {
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
+
+    public Livro() {
+
+    }
+
+    public Livro(Integer id, String titulo, String nome_autor, String texto, Categoria categoria) {
+        this.id = id;
+        this.titulo = titulo;
+        this.nome_autor = nome_autor;
+        this.texto = texto;
+        this.categoria = categoria;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getNome_autor() {
+        return nome_autor;
+    }
+
+    public void setNome_autor(String nome_autor) {
+        this.nome_autor = nome_autor;
+    }
+
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String texto) {
+        this.texto = texto;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 }
