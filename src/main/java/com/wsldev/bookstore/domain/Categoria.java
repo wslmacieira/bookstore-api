@@ -1,4 +1,4 @@
-package com.wsldev.bookstore.bookstore.domain;
+package com.wsldev.bookstore.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
