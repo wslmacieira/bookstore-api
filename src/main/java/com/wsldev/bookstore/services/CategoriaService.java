@@ -9,6 +9,7 @@ import com.wsldev.bookstore.repositories.CategoriaRepository;
 import com.wsldev.bookstore.services.exceptions.ObjectNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -41,7 +42,12 @@ public class CategoriaService {
 
     public void delete(Integer id) {
         findById(id);
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new com.wsldev.bookstore.services.exceptions.DataIntegrityViolationException(
+                    "Categoria não pode ser deletado! Possui livros associados");
+        }
     }
 
 }
