@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.wsldev.bookstore.domain.Categoria;
+import com.wsldev.bookstore.dtos.CategoriaDTO;
 import com.wsldev.bookstore.repositories.CategoriaRepository;
 import com.wsldev.bookstore.services.exceptions.ObjectNotFoundException;
 
@@ -29,6 +30,13 @@ public class CategoriaService {
     public Categoria create(Categoria categoria) {
         categoria.setId(null);
         return this.repository.save(categoria);
+    }
+
+    public Categoria update(Integer id, CategoriaDTO dto) {
+        Categoria categoria = findById(id);
+        categoria.setNome(dto.getNome());
+        categoria.setDescricao(dto.getDescricao());
+        return repository.save(categoria);
     }
 
 }
