@@ -3,6 +3,7 @@ package com.wsldev.bookstore.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.wsldev.bookstore.domain.Categoria;
 import com.wsldev.bookstore.domain.Livro;
 import com.wsldev.bookstore.repositories.LivroRepository;
 import com.wsldev.bookstore.services.exceptions.ObjectNotFoundException;
@@ -41,6 +42,13 @@ public class LivroService {
         livroUpdate.setTitulo(livro.getTitulo());
         livroUpdate.setNome_autor(livro.getNome_autor());
         livroUpdate.setTexto(livro.getTexto());
+    }
+
+    public Livro create(Integer id_cat, Livro livro) {
+        livro.setId(null);
+        Categoria categoria = categoriaService.findById(id_cat);
+        livro.setCategoria(categoria);
+        return repository.save(livro);
     }
 
 }
