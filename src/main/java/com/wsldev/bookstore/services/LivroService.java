@@ -8,6 +8,7 @@ import com.wsldev.bookstore.repositories.LivroRepository;
 import com.wsldev.bookstore.services.exceptions.ObjectNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,6 +29,18 @@ public class LivroService {
     public List<Livro> findAll(Integer id_cat) {
         categoriaService.findById(id_cat);
         return repository.findAllByCategoria(id_cat);
+    }
+
+    public Livro update(Integer id, Livro livro) {
+        Livro livroUpdate = findById(id);
+        updateData(livroUpdate, livro);
+        return repository.save(livroUpdate);
+    }
+
+    private void updateData(Livro livroUpdate, Livro livro) {
+        livroUpdate.setTitulo(livro.getTitulo());
+        livroUpdate.setNome_autor(livro.getNome_autor());
+        livroUpdate.setTexto(livro.getTexto());
     }
 
 }
