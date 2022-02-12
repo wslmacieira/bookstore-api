@@ -51,4 +51,9 @@ public class LivroService {
         return repository.save(livro);
     }
 
+    public void delete(Integer id) {
+        Livro livro = findById(id);
+        repository.delete(livro);
+    }
+
 }
